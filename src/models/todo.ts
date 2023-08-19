@@ -1,6 +1,6 @@
 //Todo의 형태 정의하는 파일
 
-class Todo {
+class TodoClass {
   //타입 지정 (TS만 있는 부분)
   id: string;
   text: string;
@@ -13,4 +13,4 @@ class Todo {
   }
 }
 
-export default Todo;
+export default TodoClass;
