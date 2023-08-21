@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-const NewTodo = () => {
+const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
   //사용자 입력값 키보드 입력마다 받지않고 한번에 받기 위해 useRef 사용
   //레퍼런스와 연결할 HTML요소를 구체적으로 설정해야 한다.
   //모든 돔 요소들은 미리 정의된 타입을 가진다.
@@ -17,8 +17,9 @@ const NewTodo = () => {
       //throw an error
       return;
     }
-    console.log(enteredText);
     //enteredText todos 목록에 추가하기
+    //App 컴포넌트에 있는 함수 호출하여 데이터 props으로 올려보내기
+    props.onAddTodo(enteredText);
   };
 
   return (
