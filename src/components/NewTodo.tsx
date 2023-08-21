@@ -1,5 +1,5 @@
 import { useRef } from "react";
-
+import classes from "./NewTodo.module.css";
 const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
   //사용자 입력값 키보드 입력마다 받지않고 한번에 받기 위해 useRef 사용
   //레퍼런스와 연결할 HTML요소를 구체적으로 설정해야 한다.
@@ -23,7 +23,7 @@ const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
   };
 
   return (
-    <form onSubmit={submitHandler}>
+    <form className={classes.form} onSubmit={submitHandler}>
       <label htmlFor="text">Todo 입력</label>
       <input id="text" name="text" type="text" ref={todoTextInputRef}></input>
       <button type="submit">추가</button>

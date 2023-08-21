@@ -1,5 +1,7 @@
 import React from "react";
 import Todo from "./Todo";
+import classes from "./Todos.module.css";
+
 //정의된 클래스는 새로운 객체를 생성하는 생성자의 역할을 할 뿐만 아니라
 //타입 역할도 한다! 클래스 이름은 타입으로도 사용할 수 있다.
 import TodoClass from "../models/todo";
@@ -12,7 +14,7 @@ type Props = {
 
 const Todos: React.FC<Props> = (props) => {
   return (
-    <ul>
+    <ul className={classes.todos}>
       {props.items.map((item) => (
         <Todo key={item.id} text={item.text} />
         //따라서 items의 각요소의 id, text 프로퍼티를 사용할 수 있다.
