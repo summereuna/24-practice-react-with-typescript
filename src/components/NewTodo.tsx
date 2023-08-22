@@ -1,25 +1,22 @@
-import { useRef } from "react";
+import { useRef, useContext } from "react";
 import classes from "./NewTodo.module.css";
-const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
-  //사용자 입력값 키보드 입력마다 받지않고 한번에 받기 위해 useRef 사용
-  //레퍼런스와 연결할 HTML요소를 구체적으로 설정해야 한다.
-  //모든 돔 요소들은 미리 정의된 타입을 가진다.
-  //그리고 디폴트 값을 항상 넣어줘야 한다. 시작값에 넣을게 없으면 null
+import { TodosContext } from "../store/todos-context";
+
+const NewTodo: React.FC = () => {
+  // 컨텍스트 추가
+  const todosCtx = useContext(TodosContext);
+
   const todoTextInputRef = useRef<HTMLInputElement>(null);
 
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
     const enteredText = todoTextInputRef.current!.value;
-    //레퍼런스에는 항상 current 프로퍼티가 있고 이 안에 실제 값이 들어 있다.
 
-    //가져온 값 검증
     if (enteredText.trim().length === 0) {
-      //throw an error
       return;
     }
-    //enteredText todos 목록에 추가하기
-    //App 컴포넌트에 있는 함수 호출하여 데이터 props으로 올려보내기
-    props.onAddTodo(enteredText);
+
+    todosCtx.addTodo(enteredText); // props으로 받던거 컨텍스트로 대체
   };
 
   return (
