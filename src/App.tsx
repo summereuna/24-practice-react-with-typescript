@@ -19,10 +19,18 @@ function App() {
       return prevTodos.concat(newTodo);
     });
   };
+
+  const removeTodoHandler = (clickedTodoId: string) => {
+    setTodos((prevTodos) => {
+      //배열의 아이템들 다 돌려서 id 값이 removeTodoHandler가 받은 인자인 clickedTodoId값과 같지 않은 것만 모아 새로운 배열로 반환하기
+      return prevTodos.filter((todo) => todo.id !== clickedTodoId);
+    });
+  };
+
   return (
     <div>
       <NewTodo onAddTodo={addTodoHandler} />
-      <Todos items={todos} />
+      <Todos items={todos} onRemoveTodo={removeTodoHandler} />
     </div>
   );
 }
